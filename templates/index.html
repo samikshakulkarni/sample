@@ -1,0 +1,85 @@
+
+
+<!DOCTYPE html>
+<html>
+<head></head>
+<title>
+
+</title>
+<script>
+
+    var username = {{username}};
+    var msg = {{ msg }};
+    var data = {{data}};
+
+</script>
+
+<body>
+    <div class="jumbotron">
+        <h4>Picture Share</h4>
+    </div>
+
+    <div class="row">
+    <form id="frmlogin" enctype="multipart/form-data" method="post" action="login">
+        <div class="col-md-4">
+<!--<img src="https://picshare.file.core.windows.net/myshare/Images/a.jpg?sv=2017-04-17&ss=bqtf&srt=sco&sp=rwdlacup&se=2018-02-04T02:15:36Z&sig=%2FcrxJnh9mg4TrXCsVYgGGnBn7Nm2Q9FiRL3VWoyFxcY%3D" alt="dog">-->
+                <table>
+                    <tr>
+                         <td>User Name:</td>
+                         <td><input type="text" id="txtUserName" name="txtUserName" /></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="chkView" name="chkView" value="1"/>
+                        </td>
+                        <td> View Pictures</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="chkCreate" name="chkCreate" value="2"/>
+                        </td>
+                        <td>  Add Pictures</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit" >Login</button>
+                        </td>
+                        <td>
+                            <label id="lblerrormsg"> {{msg}}</label>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+
+       <div id="divAllPics">
+            Welcome: {{username}}
+            <table>
+                {% for item in data %}
+                <tr>
+                    <td ><img width="100px" height="100px" src={{ item[5] }} /></td>
+                </tr>
+                    <tr>
+                    <td>{{item[0]}}</td> <!-- title-->
+                    </tr>
+                    <tr>
+                     <td>Uploaded On: {{item[1]}}</td> <!-- created date-->
+                    </tr>
+                    <tr>
+                    <td># Likes: {{item[2]}}<a style="text-decoration: none" href="/increaselikes/{{ item[4] }}" >+</a> <!-- no of likes   --></td>
+                     
+                    </tr>
+                    <tr>
+                    <td> <label id="lblerrormsg"> {{ msg }} </label></td> <!-- row ID -->
+
+                    </tr>
+                    <tr>
+                    <td style="column-span: 2">==================================================================</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+     </form>
+    </div>
+</body>
+</html>
+
